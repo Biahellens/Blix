@@ -1,4 +1,4 @@
-![blix](https://github.com/Biahellens/Blix/blob/main/assets/logoborboleta.png)
+![blix](https://github.com/Biahellens/Blix/blob/main/assets/LogoborboletaIcon.png)
 # Blix push-notification
  
 Um App com notificações push.
