@@ -1,12 +1,15 @@
-import { Alert, Text, SafeAreaView, StyleSheet, Image, View, Button, TextInput } from 'react-native';
+import React, { useState } from 'react'
+import { Alert, Text, SafeAreaView, StyleSheet, Image, View, Button, TextInput,  } from 'react-native';
 import logoBlix from '../assets/logoborboleta.png'
 import * as Notifications from 'expo-notifications';
-import React, { useState } from 'react'
+import { sendPushNotification } from './notification/sendPushNotification';
 
-export default function AdminScreen() {    
+
+export default function AdminScreen() {
   const [title, onChangeTitle] = useState('Titulo da notificação');
   const [text, onChangeText] = useState('Texto da notificação');
   const [link, onChangeLink] = useState('Link para redirecionar o usuário');
+  let token = 'ExponentPushToken[b_ED8hEL0NBwY3M_9NUtQO]'
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -17,42 +20,18 @@ export default function AdminScreen() {
   })
 
   const handleNotification  = async () => {
-    try {
-      const projectId = 'd1a4c195-a709-4266-a0a4-5fa32559e3d3';
-      const { data: token } = await Notifications.getExpoPushTokenAsync({ projectId });
-      
-      // Enviar a notificação para o token
-      await fetch('https://exp.host/--/api/v2/push/send', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: token,//'b_ED8hEL0NBwY3M_9NUtQO',
-          title: title,
-          body: text,
-          data: { link: link },
-        }),
-      });
-
-      alert('Notificação enviada com sucesso!');
-
-    } catch (error) {
-      console.error('Erro ao obter o token ou agendar notificação:', error);
-    }
-  };  
-
+    sendPushNotification(title, text, link)
+  };
 
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.imageTop}>
-          <Image 
+          <Image
             style={styles.tinyLogo}
             source={logoBlix}
           />
         </View>
-          <Text style={styles.h2}> 
+          <Text style={styles.h2}>
             BLIX, parceira tecnológica perfeita para sua startup
           </Text>
           <Text style={styles.paragraph}>
@@ -73,7 +52,7 @@ export default function AdminScreen() {
             onChangeText={onChangeLink}
             value={link}
           />
-          <Button color='#6A2597'  title='Atualizar Notificação' onPress={handleNotification}/>
+          <Button color='#6A2597'  title='Enviar Notificação' onPress={handleNotification}/>
     </SafeAreaView>
   );
 }
@@ -121,5 +100,3 @@ const styles = StyleSheet.create({
 
   }
 });
-
-
