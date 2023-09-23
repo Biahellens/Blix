@@ -10,12 +10,8 @@
     },
     "platforms": [
       "ios",
-      "android"
-    ],
-    "permissions": [
-      "CAMERA",
-      "AUDIO_RECORDING",
-      "NOTIFICATIONS"
+      "android",
+      "web"
     ],
     "splash": {
       "image": "./assets/splash.png",
@@ -29,6 +25,8 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.blix.blix",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
