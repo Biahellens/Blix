@@ -5,11 +5,13 @@ import * as Notifications from 'expo-notifications';
 import { LinearGradient } from 'expo-linear-gradient';
 import logoBlix from '../assets/logoborboleta.png'
 import * as Permissions from 'expo-permissions';
-import { permissionUser } from './notificationFirebase/push-notification'
+import * as Linking from 'expo-linking';
+
 
 export default function UserScreen() {
   const navigation = useNavigation();
   //navigation.navigate('Admin');
+
 
   useEffect( () => {
     async function permissionsNotify () {
@@ -37,6 +39,34 @@ export default function UserScreen() {
     permissionsNotify();
   },[])
 
+  const sendPushNotification = async () => {
+    const url = Linking.openURL('https://www.instagram.com/blix.aplicativos/');
+    try {
+      const response = await fetch('https://exp.host/--/api/v2/push/send', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'ExponentPushToken[b_ED8hEL0NBwY3M_9NUtQO]',
+          title: 'oi',
+          body: 'bia',
+          data: { customUrl: url },
+        }),
+      });
+
+      if (response.status === 200) {
+        console.log('Notificação push enviada com sucesso!');
+      } else {
+        console.error('Erro ao enviar notificação push:', response.status);
+      }
+    } catch (error) {
+      console.error('Erro ao enviar notificação push:', error);
+    }
+  };
+
+  sendPushNotification();
 
   return (
     <LinearGradient
