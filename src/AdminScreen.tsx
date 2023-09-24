@@ -9,7 +9,6 @@ export default function AdminScreen() {
   const [title, onChangeTitle] = useState('Titulo da notificação');
   const [text, onChangeText] = useState('Texto da notificação');
   const [link, onChangeLink] = useState('Link para redirecionar o usuário');
-  let token = 'ExponentPushToken[b_ED8hEL0NBwY3M_9NUtQO]'
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({

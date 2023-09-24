@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Button, SafeAreaView, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import logoBlix from '../assets/logoborboleta.png'
+import { Linking } from 'react-native';
 import { sendPushNotificationDefault } from './notification/sendPushNotification'
+import logoBlix from '../assets/logoborboleta.png'
 
 export default function UserScreen() {
-
   const navigation = useNavigation();
   const toAdmin = () => {
     navigation.navigate('Admin');
