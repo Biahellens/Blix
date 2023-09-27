@@ -23,6 +23,10 @@ Para o desenvolvimento deste projeto, foi utilizado as seguintes tecnologias:
 O projeto foi construido com base em [React-Native](https://reactnative.dev/) a partir do [Expo](https://docs.expo.dev/) com template [TypeScript](https://www.typescriptlang.org/). Antes de iniciar, precisa-se instalar as dependências, para isso utilizamos o [Npm](https://www.npmjs.com/) como nosso gerenciador de dependencias e xecutar o seguinte comando no terminar:
 
 ```bash
+$ expo update
+```
+e
+```bash
 $ npm install
 ```
 
